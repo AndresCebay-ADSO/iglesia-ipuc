@@ -7,6 +7,9 @@
 
     <title>Iniciar Sesión - FlockTrak Hub</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{ asset('images/LOGO-IPUC.svg') }}">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
@@ -28,21 +31,17 @@
     <!-- Left Section - Branding -->
     <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 relative overflow-hidden">
         <div class="absolute inset-0 bg-black opacity-20"></div>
-        <div class="relative z-10 flex flex-col items-center justify-center h-full p-12 text-white">
-            <!-- Church Icon -->
-            <div class="mb-8">
-                <div class="w-24 h-24 rounded-full bg-blue-400 bg-opacity-20 border-2 border-blue-300 flex items-center justify-center mb-6">
-                    <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                    </svg>
-                </div>
+        <div class="relative z-10 w-full flex flex-col items-center justify-center h-full p-12 text-white">
+            <!-- Logo -->
+            <div class="mb-8 flex justify-center">
+                <img src="{{ asset('images/LOGO-IPUC.svg') }}" alt="IPUC San Rafael" class="h-24 w-24 object-contain">
             </div>
             
             <!-- Title -->
             <h1 class="text-5xl font-bold serif-font mb-2 text-center">
                 IPUC – San Rafael
             </h1>
-            <div class="w-32 h-0.5 bg-white mb-6"></div>
+            <div class="w-32 h-0.5 bg-white mb-6 mx-auto"></div>
             
             <!-- Subtitle -->
             <p class="text-xl text-blue-100 mb-12 text-center">
@@ -50,7 +49,7 @@
             </p>
             
             <!-- Bible Verse -->
-            <div class="max-w-md text-center">
+            <div class="max-w-md text-center mx-auto">
                 <p class="text-lg italic text-blue-100 leading-relaxed">
                     "Porque donde están dos o tres congregados en mi nombre, allí estoy yo en medio de ellos."
                 </p>
@@ -65,17 +64,20 @@
     <div class="w-full lg:w-1/2 flex items-center justify-center bg-gray-50 dark:bg-gray-900 p-8">
         <div class="w-full max-w-md">
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
-                <!-- Logo for mobile -->
-                <div class="lg:hidden text-center mb-6">
-                    <img src="{{ asset('images/logo-ipuc.jpg') }}" alt="IPUC San Rafael" class="h-16 w-auto mx-auto mb-4 rounded-full">
-                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">IPUC San Rafael</h2>
+                <!-- Logo and Title Section -->
+                <div class="flex flex-col items-center justify-center mb-8">
+                    <!-- Logo -->
+                    <div class="mb-6 flex justify-center w-full">
+                        <img src="{{ asset('images/LOGO-IPUC.svg') }}" alt="IPUC San Rafael" class="h-24 w-24 object-contain">
+                    </div>
+                    
+                    <!-- Title -->
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Iniciar sesión</h2>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Ingresa tus credenciales para continuar</p>
                 </div>
 
-                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Iniciar sesión</h2>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mb-6">Ingresa tus credenciales para continuar</p>
-
                 @if ($errors->any())
-                    <div class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg relative" role="alert">
+                    <div class="mb-6 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg relative" role="alert">
                         <ul class="list-disc list-inside text-sm">
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
