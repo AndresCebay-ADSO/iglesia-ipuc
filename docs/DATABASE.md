@@ -1,4 +1,4 @@
-# 📊 Informe de Base de Datos - IPUC San Rafael
+# 📊 Informe de Base de Datos - IPUC Avenida Libertadores
 
 ## Sistema de Gestión de Miembros
 
@@ -7,7 +7,7 @@
 ## 📋 Tabla Principal: `members`
 
 ### Descripción
-Almacena la información completa de todos los integrantes de la iglesia IPUC – San Rafael.
+Almacena la información completa de todos los integrantes de la iglesia IPUC – Avenida Libertadores.
 
 ### Estructura de Campos
 
@@ -147,5 +147,5 @@ Para una implementación con base de datos real (Lovable Cloud), se recomienda:
 
 ---
 
-*Documento generado para IPUC – San Rafael*  
+*Documento generado para IPUC – Avenida Libertadores*  
 *Sistema de Gestión de Miembros v1.0*

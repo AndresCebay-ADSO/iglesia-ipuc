@@ -1,6 +1,6 @@
 # 📋 Levantamiento de Requisitos
 
-## Sistema de Gestión de Miembros - IPUC San Rafael
+## Sistema de Gestión de Miembros - IPUC Avenida Libertadores
 
 **Versión:** 1.0  
 **Fecha:** Enero 2026  
@@ -15,7 +15,7 @@
 | Campo | Información |
 |-------|-------------|
 | **Nombre del Proyecto** | FlockTrak Hub |
-| **Cliente** | IPUC San Rafael |
+| **Cliente** | IPUC Avenida Libertadores |
 | **Tipo de Sistema** | Aplicación Web de Gestión |
 | **Duración Estimada** | 8 semanas |
 | **Metodología** | Ágil (Scrum) |
@@ -36,7 +36,7 @@
 ### 2.1 Situación Actual (AS-IS)
 
 **Problema identificado:**
-La iglesia IPUC San Rafael gestiona actualmente la información de sus miembros mediante:
+La iglesia IPUC Avenida Libertadores gestiona actualmente la información de sus miembros mediante:
 
 - 📝 Registros en papel
 - 📊 Hojas de cálculo (Excel)
@@ -332,5 +332,5 @@ Ver documento `DATABASE.md` para estructura detallada de campos.
 ---
 
 *Documento de Levantamiento de Requisitos*  
-*Sistema de Gestión de Miembros - IPUC San Rafael*  
+*Sistema de Gestión de Miembros - IPUC Avenida Libertadores*  
 *FlockTrak Hub v1.0*

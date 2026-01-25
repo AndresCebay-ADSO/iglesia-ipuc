@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 // Public routes
@@ -23,6 +24,9 @@ Route::middleware('auth')->group(function () {
 
     // Members CRUD
     Route::resource('members', MemberController::class);
+
+    // Reports
+    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index')->middleware('role:admin,secretary');
 
     // Export
     Route::get('/export', [ExportController::class, 'export'])->name('export.index')->middleware('role:admin,secretary');

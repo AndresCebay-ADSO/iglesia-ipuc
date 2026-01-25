@@ -4,50 +4,61 @@
 
 @section('content')
 <div>
-    <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Miembros</h1>
-        <a href="{{ route('members.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
-            + Nuevo Miembro
-        </a>
-    </div>
-
-    <!-- Filters -->
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6">
-        <form method="GET" action="{{ route('members.index') }}" class="grid grid-cols-1 md:grid-cols-5 gap-4">
-            <!-- Search -->
+    <div class="mb-6">
+        <div class="flex justify-between items-start mb-4">
             <div>
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Búsqueda</label>
-                <input type="text" name="search" value="{{ request('search') }}" 
-                       placeholder="Nombre o documento" 
-                       class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white">
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Miembros</h1>
+                <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Gestiona los integrantes de la iglesia</p>
+            </div>
+            <div class="flex gap-3">
+                @if(auth()->user()->isAdmin() || auth()->user()->isSecretary())
+                <button onclick="showExportModal()" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    Exportar
+                </button>
+                @endif
+                <a href="{{ route('members.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    Agregar Miembro
+                </a>
+            </div>
+        </div>
+
+        <!-- Filters - Compact Style -->
+        <form method="GET" action="{{ route('members.index') }}" class="flex flex-col gap-3">
+            <!-- Search Bar -->
+            <div class="flex-1">
+                <div class="relative">
+                    <svg class="absolute left-3 top-3 w-5 h-5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <input type="text" name="search" value="{{ request('search') }}" 
+                           placeholder="Buscar por nombre o documento..." 
+                           class="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white text-sm">
+                </div>
             </div>
 
-            <!-- Age Range -->
-            <div>
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Rango de Edad</label>
-                <select name="age_range" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white">
-                    <option value="">Todos</option>
+            <!-- Filter Dropdowns -->
+            <div class="flex gap-3 flex-wrap">
+                <select name="age_range" class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white text-sm">
+                    <option value="">Todas las edades</option>
                     <option value="niños" {{ request('age_range') == 'niños' ? 'selected' : '' }}>Niños</option>
                     <option value="jóvenes" {{ request('age_range') == 'jóvenes' ? 'selected' : '' }}>Jóvenes</option>
                     <option value="adultos" {{ request('age_range') == 'adultos' ? 'selected' : '' }}>Adultos</option>
                     <option value="adultos_mayores" {{ request('age_range') == 'adultos_mayores' ? 'selected' : '' }}>Adultos Mayores</option>
                 </select>
-            </div>
 
-            <!-- Gender -->
-            <div>
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Género</label>
-                <select name="gender" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white">
+                <select name="gender" class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white text-sm">
                     <option value="">Todos</option>
                     <option value="masculino" {{ request('gender') == 'masculino' ? 'selected' : '' }}>Masculino</option>
                     <option value="femenino" {{ request('gender') == 'femenino' ? 'selected' : '' }}>Femenino</option>
                 </select>
-            </div>
 
-            <!-- Ministry -->
-            <div>
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Ministerio</label>
-                <select name="ministry" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white">
+                <select name="ministry" class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white text-sm">
                     <option value="">Todos</option>
                     <option value="alabanza" {{ request('ministry') == 'alabanza' ? 'selected' : '' }}>Alabanza</option>
                     <option value="jóvenes" {{ request('ministry') == 'jóvenes' ? 'selected' : '' }}>Jóvenes</option>
@@ -62,20 +73,14 @@
                     <option value="evangelismo" {{ request('ministry') == 'evangelismo' ? 'selected' : '' }}>Evangelismo</option>
                     <option value="ninguno" {{ request('ministry') == 'ninguno' ? 'selected' : '' }}>Ninguno</option>
                 </select>
-            </div>
 
-            <!-- Status -->
-            <div>
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Estado</label>
-                <select name="status" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white">
+                <select name="status" class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white text-sm">
                     <option value="">Todos</option>
                     <option value="activo" {{ request('status') == 'activo' ? 'selected' : '' }}>Activo</option>
                     <option value="inactivo" {{ request('status') == 'inactivo' ? 'selected' : '' }}>Inactivo</option>
                 </select>
-            </div>
 
-            <div class="flex items-end">
-                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium">
                     Filtrar
                 </button>
             </div>
@@ -140,4 +145,58 @@
         </div>
     </div>
 </div>
+
+<!-- Modal de Confirmación de Exportación (copiado del layout) -->
+<div id="exportModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+    <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white dark:bg-gray-800">
+        <div class="mt-3 text-center">
+            <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 dark:bg-green-900 mb-4">
+                <svg class="h-6 w-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+            </div>
+            <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">Confirmar Exportación</h3>
+            <div class="mt-2 px-7 py-3">
+                <p class="text-sm text-gray-500 dark:text-gray-400">
+                    ¿Desea descargar la lista de miembros en formato CSV?
+                </p>
+                <p class="text-xs text-gray-400 dark:text-gray-500 mt-2">
+                    El archivo incluirá todos los datos de los miembros con los filtros actuales aplicados.
+                </p>
+            </div>
+            <div class="flex items-center px-4 py-3 space-x-3">
+                <button onclick="hideExportModal()" class="flex-1 px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-base font-medium rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors">
+                    Cancelar
+                </button>
+                <a href="{{ route('export.index', request()->query()) }}" onclick="hideExportModal()" class="flex-1 px-4 py-2 bg-green-600 text-white text-base font-medium rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors text-center">
+                    Descargar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showExportModal() {
+        document.getElementById('exportModal').classList.remove('hidden');
+    }
+
+    function hideExportModal() {
+        document.getElementById('exportModal').classList.add('hidden');
+    }
+
+    // Cerrar modal al hacer clic fuera de él
+    document.getElementById('exportModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            hideExportModal();
+        }
+    });
+
+    // Cerrar modal con tecla ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            hideExportModal();
+        }
+    });
+</script>
 @endsection

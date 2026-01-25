@@ -1,6 +1,6 @@
 # 📖 Historias de Usuario
 
-## Sistema de Gestión de Miembros - IPUC San Rafael
+## Sistema de Gestión de Miembros - IPUC Avenida Libertadores
 
 **Versión:** 1.0  
 **Fecha:** Enero 2026
@@ -320,4 +320,4 @@ Rol: Miembro
 ---
 
 *Documento de Historias de Usuario*  
-*Sistema de Gestión de Miembros - IPUC San Rafael*
+*Sistema de Gestión de Miembros - IPUC Avenida Libertadores*

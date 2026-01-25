@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Iniciar Sesión - FlockTrak Hub</title>
+    <title>Iniciar Sesión</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/LOGO-IPUC.svg') }}">
@@ -34,18 +34,18 @@
         <div class="relative z-10 w-full flex flex-col items-center justify-center h-full p-12 text-white">
             <!-- Logo -->
             <div class="mb-8 flex justify-center">
-                <img src="{{ asset('images/LOGO-IPUC.svg') }}" alt="IPUC San Rafael" class="h-24 w-24 object-contain">
+                <img src="{{ asset('images/LOGO-IPUC.svg') }}" alt="IPUC - Avenida Libertadores" class="h-24 w-24 object-contain">
             </div>
             
             <!-- Title -->
             <h1 class="text-5xl font-bold serif-font mb-2 text-center">
-                IPUC – San Rafael
+                IPUC – Avenida Libertadores
             </h1>
             <div class="w-32 h-0.5 bg-white mb-6 mx-auto"></div>
             
             <!-- Subtitle -->
             <p class="text-xl text-blue-100 mb-12 text-center">
-                Sistema de Gestión de Membresía
+                Sistema de Gestión de Miembros
             </p>
             
             <!-- Bible Verse -->
@@ -68,7 +68,7 @@
                 <div class="flex flex-col items-center justify-center mb-8">
                     <!-- Logo -->
                     <div class="mb-6 flex justify-center w-full">
-                        <img src="{{ asset('images/LOGO-IPUC.svg') }}" alt="IPUC San Rafael" class="h-24 w-24 object-contain">
+                        <img src="{{ asset('images/LOGO-IPUC.svg') }}" alt="IPUC - Avenida Libertadores" class="h-24 w-24 object-contain">
                     </div>
                     
                     <!-- Title -->
@@ -155,7 +155,7 @@
                 <!-- Footer -->
                 <div class="mt-8 text-center">
                     <p class="text-xs text-gray-500 dark:text-gray-400">
-                        Centro FlockTrak © 2026
+                        Andres Stiven Cebay - 2026
                     </p>
                 </div>
             </div>

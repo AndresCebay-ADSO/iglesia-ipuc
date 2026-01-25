@@ -1,6 +1,6 @@
 # 📄 Especificación de Requisitos de Software (IEEE 830)
 
-## Sistema de Gestión de Miembros - IPUC San Rafael
+## Sistema de Gestión de Miembros - IPUC Avenida Libertadores
 
 **Versión:** 1.0  
 **Fecha:** Enero 2026  
@@ -12,7 +12,7 @@
 
 ### 1.1 Propósito
 
-Este documento especifica los requisitos de software para el Sistema de Gestión de Miembros de la Iglesia Pentecostal Unida de Colombia (IPUC) – Sede San Rafael. El sistema permite administrar información de los integrantes de la congregación, generar estadísticas y facilitar la toma de decisiones administrativas.
+Este documento especifica los requisitos de software para el Sistema de Gestión de Miembros de la Iglesia Pentecostal Unida de Colombia (IPUC) – Avenida Libertadores. El sistema permite administrar información de los integrantes de la congregación, generar estadísticas y facilitar la toma de decisiones administrativas.
 
 ### 1.2 Alcance
 
@@ -38,7 +38,7 @@ El sistema **FlockTrak Hub** es una aplicación web que permite:
 ### 1.4 Referencias
 
 - IEEE Std 830-1998: Práctica Recomendada para Especificaciones de Requisitos de Software
-- Documentación interna IPUC San Rafael
+- Documentación interna IPUC Avenida Libertadores
 - Manual de procedimientos administrativos de la iglesia
 
 ### 1.5 Visión General del Documento
@@ -257,4 +257,4 @@ Ver documento `USER_STORIES.md` para historias de usuario detalladas.
 ---
 
 *Documento generado según estándar IEEE 830-1998*  
-*Sistema de Gestión de Miembros - IPUC San Rafael*
+*Sistema de Gestión de Miembros - IPUC Avenida Libertadores*

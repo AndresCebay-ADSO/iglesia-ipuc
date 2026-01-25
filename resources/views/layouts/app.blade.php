@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'FlockTrak Hub') - IPUC San Rafael</title>
+    <title>@yield('title', 'FlockTrak Hub') - IPUC - AL</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{ asset('images/LOGO-IPUC.svg') }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -25,12 +28,12 @@
         <aside class="w-64 bg-white dark:bg-gray-800 shadow-lg fixed h-full flex flex-col">
             <div class="p-6">
                 <div class="flex items-center mb-8">
-                    <img src="{{ asset('images/logo-ipuc.jpg') }}" alt="IPUC San Rafael" class="h-12 w-auto mr-3">
+                    <img src="{{ asset('images/LOGO-IPUC.svg') }}" alt="IPUC - Avenida Libertadores" class="h-12 w-auto mr-3">
                     <div>
                         <h1 class="text-xl font-bold text-gray-800 dark:text-white">
                             FlockTrak Hub
                         </h1>
-                        <p class="text-xs text-gray-500 dark:text-gray-400">IPUC San Rafael</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">IPUC - Avenida Libertadores</p>
                     </div>
                 </div>
                 <nav class="space-y-2">
@@ -47,6 +50,12 @@
                         Miembros
                     </a>
                     @if(auth()->user()->isAdmin() || auth()->user()->isSecretary())
+                    <a href="{{ route('reports.index') }}" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors {{ request()->routeIs('reports.*') ? 'bg-blue-50 dark:bg-blue-900 text-blue-600 dark:text-blue-400 font-medium' : '' }}">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                        Reportes
+                    </a>
                     <button onclick="showExportModal()" class="w-full flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors {{ request()->routeIs('export.*') ? 'bg-blue-50 dark:bg-blue-900 text-blue-600 dark:text-blue-400 font-medium' : '' }}">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
