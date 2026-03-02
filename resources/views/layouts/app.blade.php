@@ -21,18 +21,11 @@
             darkMode: 'class',
         }
     </script>
-    <style>
-        /* Safe area para dispositivos con notch (iPhone X+) */
-        @supports (padding: env(safe-area-inset-top)) {
-            .safe-top { padding-top: env(safe-area-inset-top); }
-            .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
-        }
-    </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900">
     <div class="min-h-screen flex">
         <!-- Mobile Header -->
-        <header class="lg:hidden fixed top-0 left-0 right-0 h-14 safe-top bg-white dark:bg-gray-800 shadow z-40 flex items-center justify-between px-4">
+        <header class="lg:hidden fixed top-0 left-0 right-0 h-14 bg-white dark:bg-gray-800 shadow z-50 flex items-center justify-between px-4">
             <button onclick="toggleMobileMenu()" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700" aria-label="Menú">
                 <svg id="menu-icon" class="w-6 h-6 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -114,7 +107,7 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 w-full lg:ml-64 pt-14 lg:pt-0 safe-bottom">
+        <main class="flex-1 w-full lg:ml-64 pt-14 lg:pt-0">
             <div class="p-4 sm:p-6 lg:p-8">
                 @if (session('success'))
                     <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
@@ -193,6 +186,49 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 hideExportModal();
+            }
+        });
+
+        // Menú móvil
+        function toggleMobileMenu() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('mobile-overlay');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+
+            const isOpening = sidebar.classList.contains('-translate-x-full');
+
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+
+            if (isOpening) {
+                document.body.classList.add('overflow-hidden');
+            } else {
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
+
+        // Reset estado del menú móvil al pasar a escritorio
+        function resetMobileMenuState() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('mobile-overlay');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+
+            if (!sidebar || !overlay || !menuIcon || !closeIcon) return;
+
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.add('hidden');
+            menuIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        window.addEventListener('resize', function () {
+            if (window.innerWidth >= 1024) {
+                resetMobileMenuState();
             }
         });
 
