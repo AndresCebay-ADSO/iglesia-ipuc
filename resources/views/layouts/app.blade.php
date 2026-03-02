@@ -49,7 +49,7 @@
         <div id="mobile-overlay" class="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-30 hidden" onclick="toggleMobileMenu()"></div>
 
         <!-- Sidebar -->
-        <aside id="sidebar" class="w-64 bg-white dark:bg-gray-800 shadow-lg fixed top-0 left-0 h-full flex flex-col z-40 transform -translate-x-full lg:translate-x-0 lg:static transition-transform duration-300 ease-in-out pt-14 lg:pt-0">
+        <aside id="sidebar" class="w-64 bg-white dark:bg-gray-800 shadow-lg fixed top-0 left-0 h-full flex flex-col z-40 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out pt-14 lg:pt-0">
             <div class="p-4 lg:p-6 overflow-y-auto flex-1">
                 <div class="flex items-center mb-8">
                     <img src="{{ asset('images/LOGO-IPUC.svg') }}" alt="IPUC - Avenida Libertadores" class="h-12 w-auto mr-3">
