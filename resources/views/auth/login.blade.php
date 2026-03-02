@@ -61,9 +61,9 @@
     </div>
 
     <!-- Right Section - Login Form -->
-    <div class="w-full lg:w-1/2 flex items-center justify-center bg-gray-50 dark:bg-gray-900 p-8">
+    <div class="w-full lg:w-1/2 flex items-center justify-center bg-gray-50 dark:bg-gray-900 p-4 sm:p-6 lg:p-8 min-h-screen">
         <div class="w-full max-w-md">
-            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sm:p-8">
                 <!-- Logo and Title Section -->
                 <div class="flex flex-col items-center justify-center mb-8">
                     <!-- Logo -->
@@ -101,7 +101,7 @@
                                 </svg>
                             </div>
                             <input id="email" name="email" type="email" autocomplete="email" required 
-                                   class="block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                                   class="block w-full pl-10 pr-3 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
                                    placeholder="correo@ejemplo.com" value="{{ old('email') }}">
                         </div>
                     </div>
@@ -118,7 +118,7 @@
                                 </svg>
                             </div>
                             <input id="password" name="password" type="password" autocomplete="current-password" required 
-                                   class="block w-full pl-10 pr-10 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                                   class="block w-full pl-10 pr-10 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
                                    placeholder="••••••••">
                             <button type="button" onclick="togglePassword()" class="absolute inset-y-0 right-0 pr-3 flex items-center">
                                 <svg id="eye-icon" class="h-5 w-5 text-gray-400 hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

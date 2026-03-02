@@ -5,12 +5,12 @@
 @section('content')
 <div>
     <div class="mb-6">
-        <div class="flex justify-between items-start mb-4">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-4">
             <div>
-                <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Miembros</h1>
+                <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Miembros</h1>
                 <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Gestiona los integrantes de la iglesia</p>
             </div>
-            <div class="flex gap-3">
+            <div class="flex flex-col sm:flex-row gap-3">
                 @if(auth()->user()->isAdmin() || auth()->user()->isSecretary())
                 <button onclick="showExportModal()" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg flex items-center gap-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -87,8 +87,8 @@
         </form>
     </div>
 
-    <!-- Members Table -->
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
+    <!-- Members Table - Hidden on mobile -->
+    <div class="hidden md:block bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                 <thead class="bg-gray-50 dark:bg-gray-700">
@@ -144,11 +144,47 @@
             </table>
         </div>
     </div>
+
+    <!-- Members Cards - Mobile only -->
+    <div class="md:hidden space-y-4">
+        @forelse($members as $member)
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4">
+                <div class="flex justify-between items-start mb-3">
+                    <div>
+                        <h3 class="font-semibold text-gray-900 dark:text-white">{{ $member->fullname }}</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">{{ $member->document_id }}</p>
+                    </div>
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full {{ $member->status == 'activo' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' }}">
+                        {{ ucfirst($member->status) }}
+                    </span>
+                </div>
+                <div class="space-y-1 text-sm text-gray-600 dark:text-gray-400 mb-4">
+                    <p><span class="font-medium">Edad:</span> {{ $member->age }} años · <span class="font-medium">Género:</span> {{ ucfirst($member->gender) }}</p>
+                    <p><span class="font-medium">Ministerio:</span> {{ $member->formatted_ministry }}@if($member->ministry_role) ({{ ucfirst($member->ministry_role) }})@endif</p>
+                    <p><span class="font-medium">Rol:</span> {{ $member->formatted_church_role }}</p>
+                </div>
+                <div class="flex gap-2 pt-2 border-t border-gray-200 dark:border-gray-600">
+                    <a href="{{ route('members.edit', $member) }}" class="flex-1 text-center py-2 px-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg">Editar</a>
+                    @if(auth()->user()->isAdmin())
+                    <form action="{{ route('members.destroy', $member) }}" method="POST" class="flex-1" onsubmit="return confirm('¿Está seguro de eliminar este miembro?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="w-full py-2 px-3 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-lg">Eliminar</button>
+                    </form>
+                    @endif
+                </div>
+            </div>
+        @empty
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-8 text-center text-gray-500 dark:text-gray-400">
+                No se encontraron miembros
+            </div>
+        @endforelse
+    </div>
 </div>
 
 <!-- Modal de Confirmación de Exportación (copiado del layout) -->
-<div id="exportModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-    <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white dark:bg-gray-800">
+<div id="exportModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 p-4">
+    <div class="relative top-10 sm:top-20 mx-auto p-5 border w-full max-w-sm shadow-lg rounded-md bg-white dark:bg-gray-800">
         <div class="mt-3 text-center">
             <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 dark:bg-green-900 mb-4">
                 <svg class="h-6 w-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
