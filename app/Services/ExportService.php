@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Response;
 class ExportService
 {
     /**
-     * Export members to CSV.
+     * Export members to CSV (compatible con Excel).
      */
     public function exportToCsv(array $members = null): \Symfony\Component\HttpFoundation\StreamedResponse
     {
@@ -32,7 +32,10 @@ class ExportService
             // Add BOM for UTF-8 to ensure Excel opens it correctly
             fprintf($file, chr(0xEF).chr(0xBB).chr(0xBF));
 
-            // CSV Headers
+            // Usar ; como delimitador para que Excel en español lo lea mejor
+            $delimiter = ';';
+
+            // Encabezados CSV
             fputcsv($file, [
                 'Nombre',
                 'Documento',
@@ -51,17 +54,17 @@ class ExportService
                 'Rol',
                 'Fecha Ingreso',
                 'Estado',
-            ]);
+            ], $delimiter);
 
             // CSV Data
             foreach ($members as $member) {
                 fputcsv($file, [
                     $member->fullname,
                     $member->document_id,
-                    $member->birth_date->format('Y-m-d'),
+                    optional($member->birth_date)->format('Y-m-d'),
                     $member->age,
-                    $member->gender,
-                    $member->marital_status,
+                    ucfirst($member->gender),
+                    ucfirst($member->marital_status),
                     $member->phone,
                     $member->email ?? '',
                     $member->address ?? '',
@@ -71,9 +74,9 @@ class ExportService
                     $member->friend_relation ?? '',
                     $member->formatted_ministry . ($member->ministry_role ? ' (' . ucfirst($member->ministry_role) . ')' : ''),
                     $member->formatted_church_role,
-                    $member->join_date->format('Y-m-d'),
-                    $member->status,
-                ]);
+                    optional($member->join_date)->format('Y-m-d'),
+                    ucfirst($member->status),
+                ], $delimiter);
             }
 
             fclose($file);
