@@ -103,11 +103,41 @@ class StatisticsService
     }
 
     /**
+     * Get activity rate (percentage of active members).
+     */
+    public function getActivityRate(array $stats): float
+    {
+        return $stats['total'] > 0 
+            ? round(($stats['active'] / $stats['total']) * 100, 2)
+            : 0;
+    }
+
+    /**
+     * Get baptism rate.
+     */
+    public function getBaptismRate(array $stats): float
+    {
+        return $stats['total'] > 0 
+            ? round(($stats['baptized'] / $stats['total']) * 100, 2)
+            : 0;
+    }
+
+    /**
+     * Get sealed rate.
+     */
+    public function getSealedRate(array $stats): float
+    {
+        return $stats['total'] > 0 
+            ? round(($stats['sealed'] / $stats['total']) * 100, 2)
+            : 0;
+    }
+
+    /**
      * Get all statistics for dashboard.
      */
     public function getAllStatistics(): array
     {
-        return [
+        $stats = [
             'total' => $this->getTotalMembers(),
             'active' => $this->getActiveMembers(),
             'inactive' => $this->getInactiveMembers(),
@@ -117,5 +147,11 @@ class StatisticsService
             'by_gender' => $this->getDistributionByGender(),
             'by_ministry' => $this->getDistributionByMinistry(),
         ];
+
+        $stats['activity_rate'] = $this->getActivityRate($stats);
+        $stats['baptism_rate'] = $this->getBaptismRate($stats);
+        $stats['sealed_rate'] = $this->getSealedRate($stats);
+
+        return $stats;
     }
 }

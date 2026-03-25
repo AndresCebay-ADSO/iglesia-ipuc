@@ -21,26 +21,11 @@ class ReportController extends Controller
     {
         $stats = $this->statisticsService->getAllStatistics();
 
-        // Calculate activity rate (percentage of active members)
-        $activityRate = $stats['total'] > 0 
-            ? round(($stats['active'] / $stats['total']) * 100, 2)
-            : 0;
-
-        // Calculate baptism rate
-        $baptismRate = $stats['total'] > 0 
-            ? round(($stats['baptized'] / $stats['total']) * 100, 2)
-            : 0;
-
-        // Calculate sealed rate
-        $sealedRate = $stats['total'] > 0 
-            ? round(($stats['sealed'] / $stats['total']) * 100, 2)
-            : 0;
-
         return view('reports.index', [
             'stats' => $stats,
-            'activityRate' => $activityRate,
-            'baptismRate' => $baptismRate,
-            'sealedRate' => $sealedRate,
+            'activityRate' => $stats['activity_rate'],
+            'baptismRate' => $stats['baptism_rate'],
+            'sealedRate' => $stats['sealed_rate'],
         ]);
     }
 
