@@ -39,7 +39,7 @@
             
             <!-- Title -->
             <h1 class="text-5xl font-bold serif-font mb-2 text-center">
-                IPUC – Avenida Libertadores
+                IPUC - Avenida Libertadores
             </h1>
             <div class="w-32 h-0.5 bg-white mb-6 mx-auto"></div>
             

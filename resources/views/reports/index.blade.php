@@ -5,7 +5,7 @@
 @section('content')
 <div>
     <!-- Header -->
-    <div class="flex justify-between items-start mb-8">
+    <div class="flex flex-col sm:flex-row justify-between items-start gap-4 mb-8">
         <div>
             <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Reportes</h1>
             <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Estadísticas y análisis de los miembros</p>
