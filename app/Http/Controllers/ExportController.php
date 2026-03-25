@@ -23,15 +23,39 @@ class ExportController extends Controller
      */
     public function export(Request $request): StreamedResponse
     {
+        $members = $this->getMembersForExport($request);
+        return $this->exportService->exportToCsv($members);
+    }
+
+    /**
+     * Export members to PDF.
+     */
+    public function exportPdf(Request $request)
+    {
+        $members = $this->getMembersForExport($request);
+        return $this->exportService->exportToPdf($members);
+    }
+
+    /**
+     * Export members to Word.
+     */
+    public function exportWord(Request $request)
+    {
+        $members = $this->getMembersForExport($request);
+        return $this->exportService->exportToWord($members);
+    }
+
+    /**
+     * Helper to get members based on request filters.
+     */
+    protected function getMembersForExport(Request $request)
+    {
         $filters = $request->only(['search', 'age_range', 'gender', 'ministry', 'status']);
         
-        // If filters are applied, get filtered members
         if (!empty(array_filter($filters))) {
-            $members = $this->memberService->getFilteredMembers($filters);
-        } else {
-            $members = null; // Export all members
+            return $this->memberService->getFilteredMembers($filters);
         }
 
-        return $this->exportService->exportToCsv($members);
+        return null; // Export all members
     }
 }

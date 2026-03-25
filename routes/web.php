@@ -29,5 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index')->middleware('role:admin,secretary');
 
     // Export
-    Route::get('/export', [ExportController::class, 'export'])->name('export.index')->middleware('role:admin,secretary');
+    Route::get('/export', [ExportController::class, 'export'])->name('export.csv')->middleware('role:admin,secretary');
+    Route::get('/export/pdf', [ExportController::class, 'exportPdf'])->name('export.pdf')->middleware('role:admin,secretary');
+    Route::get('/export/word', [ExportController::class, 'exportWord'])->name('export.word')->middleware('role:admin,secretary');
 });

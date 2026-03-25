@@ -139,9 +139,6 @@
     @include('components.export-modal')
 
     <script>
-        function showExportModal() {
-            document.getElementById('exportModal').classList.remove('hidden');
-        }
 
         function hideExportModal() {
             document.getElementById('exportModal').classList.add('hidden');
