@@ -11,23 +11,17 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/LOGO-IPUC.svg') }}">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+    <!-- Descripción para SEO -->
+    <meta name="description" content="@yield('meta_description', 'FlockTrak Hub — Sistema de gestión de miembros de la iglesia IPUC Avenida Libertadores.')">
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-        }
-    </script>
+    <!-- Assets compilados con Vite (Tailwind + JS) -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-50 dark:bg-gray-900">
     <div class="min-h-screen flex">
         <!-- Mobile Header -->
         <header class="lg:hidden fixed top-0 left-0 right-0 h-14 bg-white dark:bg-gray-800 shadow z-50 flex items-center justify-between px-4">
-            <button onclick="toggleMobileMenu()" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700" aria-label="Menú">
+            <button onclick="toggleMobileMenu()" id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="sidebar">
                 <svg id="menu-icon" class="w-6 h-6 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
@@ -108,7 +102,7 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 w-full lg:ml-64 pt-14 lg:pt-0 min-h-screen overflow-auto">
+        <main id="main-content" class="flex-1 w-full lg:ml-64 pt-14 lg:pt-0 min-h-screen overflow-auto" role="main">
             <div class="p-4 sm:p-6 lg:p-8">
                 @if (session('success'))
                     <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
