@@ -8,8 +8,9 @@
 
     <title>Iniciar Sesión — FlockTrak Hub | IPUC Avenida Libertadores</title>
 
-    <!-- Meta descripción para SEO -->
+    <!-- Configuración para SEO e Indexación -->
     <meta name="description" content="Accede al sistema de gestión de miembros FlockTrak Hub de la iglesia IPUC Avenida Libertadores.">
+    <meta name="robots" content="index, follow">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/LOGO-IPUC.svg') }}">

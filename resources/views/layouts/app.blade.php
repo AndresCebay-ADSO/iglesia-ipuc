@@ -11,8 +11,9 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/LOGO-IPUC.svg') }}">
 
-    <!-- Descripción para SEO -->
+    <!-- Configuración para SEO e Indexación -->
     <meta name="description" content="@yield('meta_description', 'FlockTrak Hub — Sistema de gestión de miembros de la iglesia IPUC Avenida Libertadores.')">
+    <meta name="robots" content="index, follow">
 
     <!-- Assets compilados con Vite (Tailwind + JS) -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
